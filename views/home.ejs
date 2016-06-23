@@ -1,0 +1,71 @@
+<html ng-app="Employees" ng-controller="GetEmployees as ge" ng-init="ge.getEmployees()">
+<head>
+    <title>Employee List</title>
+    <script src="/javascripts/angular.min.js"></script>
+    <script src="/javascripts/ClientSideControllers.js"></script>
+    <script src="/javascripts/services.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link href="/public/stylesheets/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <br/>
+        <h1 aalign="center">edureka! MEAN Application - Employee Directory App</h1><br/><br/>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Date of Birth</td>
+                    <td>Department</td>
+                    <td>Gender</td>
+                    <td>Age</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <form>
+                        <td>
+                            <input class="form-control" type="text" id="name" placeholder="Name" required ng-model="user.name">
+                        </td>
+                        <td>
+                            <input class="form-control" type="email" id="email" placeholder="abc@xyz.com" required ng-model="user.email">
+                        </td>
+                        <td>
+                            <input class="form-control" type="date" id="dob" ng-model="user.dob" required>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="dept" placeholder="Department" ng-model="user.department" required>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="gender" placeholder="Gender" ng-model="user.gender" required>
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" id="age" placeholder="Age" disabled>
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-md" ng-controller="AddEmployee as ae" ng-click="ae.addEmployee(user)">Add Employee</button>
+                            <td>
+                            <button class="btn btn-success btn-md" ng-controller="UpdateEmployee as ue" ng-click="ue.UpdateEmployee(user)">Update Employee</button>
+                            </td>
+                        </td>
+                    </form>
+                </tr>
+                <tr ng-controller="ChangeEmployee as ce" ng-repeat="employee in ge.arr track by $index">
+
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.dob }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.gender }}</td>
+                    <td>{{ employee.age }}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" ng-click="ce.deleteEmployee(employee)">Delete</button>
+                        <button class="btn btn-primary btn-sm" ng-click="ce.editEmployee(employee)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
